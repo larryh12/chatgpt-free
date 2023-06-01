@@ -7,16 +7,16 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center px-8">
-      <h1 className="my-8 md:my-16 text-4xl font-bold">ChatGPT Free</h1>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-8">
+      <h1 className="text-4xl font-bold">ChatGPT Free</h1>
 
-      <div className="flex flex-col md:flex-row gap-4 ">
+      <div className="flex flex-col gap-4 md:flex-row ">
         <div>
-          <div className="flex gap-2 md:flex-col items-center justify-center mb-4">
+          <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <SunIcon className="h-8 w-8" />
             <h2>Examples</h2>
           </div>
-          <div className="space-y-4 [&>p]:btn [&>p]:max-w-xs [&>p]:h-fit [&>p]:leading-5 [&>p]:flex [&>p]:p-4 [&>p]:normal-case">
+          <div className="max-w-md space-y-4 [&>p]:btn [&>p]:flex [&>p]:h-fit [&>p]:p-4 [&>p]:normal-case [&>p]:leading-5">
             <p>&quot;Explain quantum computing in simple terms&quot;</p>
             <p>
               &quot;Got any creative ideas for a 10 year old&apos;s
@@ -27,11 +27,11 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="flex gap-2 md:flex-col items-center justify-center mb-4">
+          <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <BoltIcon className="h-8 w-8" />
             <h2>Capabilities</h2>
           </div>
-          <div className="space-y-4 [&>p]:btn [&>p]:max-w-xs [&>p]:h-fit [&>p]:leading-5 [&>p]:flex [&>p]:p-4 [&>p]:normal-case">
+          <div className="max-w-md space-y-4 [&>p]:btn [&>p]:flex [&>p]:h-fit [&>p]:p-4 [&>p]:normal-case [&>p]:leading-5">
             <p>Remembers what user said earlier in the conversation</p>
             <p>Allows user to provide follow-up corrections</p>
             <p>Trained to decline inappropriate requests</p>
@@ -39,11 +39,11 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="flex gap-2 md:flex-col items-center justify-center mb-4">
+          <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <ExclamationTriangleIcon className="h-8 w-8" />
             <h2>Limitations</h2>
           </div>
-          <div className="space-y-4 [&>p]:btn [&>p]:max-w-xs [&>p]:h-fit [&>p]:leading-5 [&>p]:flex [&>p]:p-4 [&>p]:normal-case">
+          <div className="max-w-md space-y-4 [&>p]:btn [&>p]:flex [&>p]:h-fit [&>p]:p-4 [&>p]:normal-case [&>p]:leading-5">
             <p>May occasionally generate incorrect information</p>
             <p>
               May occasionally produce harmful instructions or biased content
