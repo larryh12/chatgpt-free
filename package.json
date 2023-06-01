@@ -24,6 +24,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.0.18",
     "daisyui": "^3.0.0"
   }
 }

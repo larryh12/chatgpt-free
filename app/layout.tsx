@@ -10,8 +10,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html data-theme="dark" lang="en">
+      <div className="flex">
+        {/* Sidebar */}
+        {/* ClientProvider - Notification */}
+        <div className="flex-1">{children}</div>
+      </div>
     </html>
   );
 }
