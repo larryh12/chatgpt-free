@@ -7,10 +7,10 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-8">
+    <div className="flex h-screen flex-col items-center gap-16 overflow-y-scroll px-8 py-16">
       <h1 className="text-4xl font-bold">ChatGPT Free</h1>
 
-      <div className="flex flex-col gap-4 md:flex-row ">
+      <div className="flex flex-col gap-8 md:flex-row md:gap-4">
         <div>
           <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <SunIcon className="h-8 w-8" />

@@ -12,11 +12,11 @@ export default function RootLayout({
 }) {
   return (
     <html data-theme="dark" lang="en">
-      <div className="flex">
+      <body className="flex">
         <Sidebar />
         {/* ClientProvider - Notification */}
         <div className="flex-1">{children}</div>
-      </div>
+      </body>
     </html>
   );
 }
