@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: 'chatgpt-free-larryh21',
   storageBucket: 'chatgpt-free-larryh21.appspot.com',
   messagingSenderId: '285316896679',
-  appId: '1:285316896679:web:21452bb8c43d5e0c908882',
+  appId: '1:285316896679:web:bf13b87834021527908882',
 };
 
 // Initialize Firebase

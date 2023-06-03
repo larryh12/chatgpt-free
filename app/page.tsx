@@ -7,7 +7,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex h-screen flex-col items-center gap-16 overflow-y-scroll px-8 py-16">
+    <div className="flex h-screen flex-col items-center gap-16 overflow-y-auto px-8 py-16">
       <h1 className="text-4xl font-bold">ChatGPT Free</h1>
 
       <div className="flex flex-col gap-8 md:flex-row md:gap-4">
