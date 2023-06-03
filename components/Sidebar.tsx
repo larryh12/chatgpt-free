@@ -36,14 +36,18 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div onClick={() => signOut()} className="mx-auto cursor-pointer">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={session.user?.image!}
-            alt="User profile picture"
-            className="m-auto h-8 w-8 rounded-full hover:opacity-50"
-          />
-          <p className="link m-auto text-sm">Sign out</p>
+        <div className="mx-auto ">
+          <a href="/" aria-label="Home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={session.user?.image!}
+              alt="User profile picture"
+              className="m-auto h-8 w-8 rounded-full hover:opacity-50"
+            />
+          </a>
+          <p onClick={() => signOut()} className="link m-auto text-sm">
+            Sign out
+          </p>
         </div>
       )}
     </div>

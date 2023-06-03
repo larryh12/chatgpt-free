@@ -1,10 +1,13 @@
+'use client';
+
 import { ChatBubbleLeftIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   id: string;
@@ -13,10 +16,15 @@ type Props = {
 
 function ChatRow({ id, isActive }: Props) {
   const { data: session } = useSession();
+  const router = useRouter();
   const [messages] = useCollection(
     session &&
       collection(db, 'users', session.user?.email!, 'chats', id, 'messages')
   );
+  const removeChat = async () => {
+    await deleteDoc(doc(db, 'users', session?.user?.email!, 'chats', id));
+    router.replace('/');
+  };
 
   return (
     <Link href={`/chat/${id}`}>
@@ -29,7 +37,7 @@ function ChatRow({ id, isActive }: Props) {
         <p className="flex-1 truncate">
           {messages?.docs[0]?.data().text || `New chat - ${id}`}
         </p>
-        <TrashIcon className="h-5 w-5 hover:text-error" />
+        <TrashIcon onClick={removeChat} className="h-5 w-5 hover:text-error" />
       </div>
     </Link>
   );
