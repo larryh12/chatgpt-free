@@ -1,6 +1,8 @@
 'use client';
 
+import { db } from '@/firebase';
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
@@ -11,10 +13,56 @@ type Props = {
 function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState('');
   const { data: session } = useSession();
+  const model = 'text-davinci-003';
+
+  const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!prompt) return;
+
+    const input = prompt.trim();
+    setPrompt('');
+
+    const message: Message = {
+      text: input,
+      createdAt: serverTimestamp(),
+      user: {
+        _id: session?.user?.email!,
+        name: session?.user?.name!,
+        avatar:
+          session?.user?.image! ||
+          `https://ui-avatars.com/api/?name=${session?.user?.name!}`,
+      },
+    };
+
+    await addDoc(
+      collection(
+        db,
+        'users',
+        session?.user?.email!,
+        'chats',
+        chatId,
+        'messages'
+      ),
+      message
+    );
+
+    await fetch('api/askQuestion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: input,
+        chatId,
+        model,
+        session,
+      }),
+    });
+  };
 
   return (
     <div>
-      <form className="flex w-full items-center gap-4">
+      <form onSubmit={sendMessage} className="flex w-full items-center gap-4">
         <input
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
