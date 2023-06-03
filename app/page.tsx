@@ -7,11 +7,13 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex h-screen flex-col items-center gap-16 overflow-y-auto px-8 py-16">
-      <h1 className="text-4xl font-bold">ChatGPT Free</h1>
+    <div className="flex h-screen flex-col items-center gap-16 overflow-y-auto px-8 py-16 md:justify-center">
+      <h1 className="text-4xl font-bold">
+        ChatGPT <span className="text-accent">Free</span>
+      </h1>
 
       <div className="flex flex-col gap-8 md:flex-row md:gap-4">
-        <div>
+        <div className="flex-1">
           <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <SunIcon className="h-8 w-8" />
             <h2>Examples</h2>
@@ -26,7 +28,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="flex-1">
           <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <BoltIcon className="h-8 w-8" />
             <h2>Capabilities</h2>
@@ -38,7 +40,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="flex-1">
           <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <ExclamationTriangleIcon className="h-8 w-8" />
             <h2>Limitations</h2>
