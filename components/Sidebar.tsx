@@ -42,7 +42,7 @@ function Sidebar() {
             <img
               src={session.user?.image!}
               alt="User profile picture"
-              className="m-auto h-8 w-8 rounded-full hover:opacity-50"
+              className="m-auto h-8 w-8 rounded-full transition-all hover:opacity-50"
             />
           </a>
           <p onClick={() => signOut()} className="link m-auto text-sm">
