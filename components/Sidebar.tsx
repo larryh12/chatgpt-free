@@ -21,9 +21,9 @@ function Sidebar() {
   );
 
   return (
-    <div className="hidden h-screen w-72 flex-col  bg-base-300 p-4 md:flex">
+    <div className="hidden h-screen w-72 flex-col bg-base-300 p-4 md:flex">
       <NewChat />
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div>{/* model select */}</div>
         {/* map through the chat row */}
         {chats?.docs.map((chat) => (
