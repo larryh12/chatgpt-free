@@ -35,19 +35,6 @@ function Sidebar() {
 
       <div className="form-control">
         <label className="label">
-          <span className="label-text">ChatGPT model</span>
-        </label>
-        <select className="select-bordered select w-full bg-base-300">
-          {models.map((model) => (
-            <option key={model} value={model}>
-              {model}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="form-control">
-        <label className="label">
           <span className="label-text">Themes</span>
         </label>
         <select
@@ -58,6 +45,19 @@ function Sidebar() {
           {themes.map((theme) => (
             <option key={theme} value={theme}>
               {theme}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">ChatGPT model</span>
+        </label>
+        <select className="select-bordered select w-full bg-base-300">
+          {models.map((model) => (
+            <option key={model} value={model}>
+              {model}
             </option>
           ))}
         </select>
