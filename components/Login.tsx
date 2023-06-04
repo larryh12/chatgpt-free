@@ -21,7 +21,7 @@ function Login() {
       </p>
       <button
         onClick={() => signIn('google', { callbackUrl: '/' })}
-        className="btn-neutral btn normal-case"
+        className="btn-accent btn normal-case"
       >
         Get Started
       </button>

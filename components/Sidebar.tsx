@@ -8,6 +8,7 @@ import { collection, orderBy, query } from 'firebase/firestore';
 import { db } from '@/firebase';
 import ChatRow from './ChatRow';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 function Sidebar() {
   const { data: session } = useSession();
@@ -36,18 +37,22 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div className="mx-auto ">
+        <div className="flex flex-col items-center">
           <a href="/" aria-label="Home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={session.user?.image!}
-              alt="User profile picture"
-              className="m-auto h-8 w-8 rounded-full transition-all hover:opacity-50"
-            />
+            <div className="online avatar">
+              <div className="w-10 rounded-full ring ring-offset-2 ring-offset-base-100 transition-all hover:ring-accent">
+                <Image
+                  alt="avatar"
+                  src={session.user?.image!}
+                  width={40}
+                  height={40}
+                />
+              </div>
+            </div>
           </a>
           <p
             onClick={() => signOut({ callbackUrl: '/' })}
-            className="link m-auto text-sm"
+            className="link-hover link text-sm transition-all"
           >
             Sign out
           </p>

@@ -29,9 +29,7 @@ function ChatInput({ chatId }: Props) {
       user: {
         _id: session?.user?.email!,
         name: session?.user?.name!,
-        avatar:
-          session?.user?.image! ||
-          `https://ui-avatars.com/api/?name=${session?.user?.name!}`,
+        avatar: session?.user?.image!,
       },
     };
 
@@ -71,7 +69,8 @@ function ChatInput({ chatId }: Props) {
       user: {
         _id: 'ChatGPT',
         name: 'ChatGPT',
-        avatar: 'https://simpleicons.org/icons/openai.svg',
+        avatar:
+          'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
       },
     };
 
@@ -97,7 +96,7 @@ function ChatInput({ chatId }: Props) {
           isLoading ? 'inline-flex' : 'hidden'
         } gap-2 overflow-hidden rounded-full bg-base-200 p-2`}
       >
-        <span className="label-text-alt">ChatGPT is thinking</span>
+        <span className="label-text-alt">ChatGPT is typing</span>
         <span className="loading loading-dots loading-xs"></span>
       </label>
       <form onSubmit={sendMessage} className="flex w-full items-center gap-4">
