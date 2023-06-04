@@ -31,6 +31,7 @@
     "@heroicons/react": "^2.0.18",
     "daisyui": "^3.0.0",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0"
+    "prettier-plugin-tailwindcss": "^0.3.0",
+    "theme-change": "^2.5.0"
   }
 }

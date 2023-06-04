@@ -17,7 +17,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html data-theme="light" lang="en">
+    <html lang="en">
       <body>
         <SessionProvider session={session}>
           {!session ? (

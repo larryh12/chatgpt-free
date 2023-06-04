@@ -26,7 +26,7 @@ function NewChat() {
   return (
     <div
       onClick={createNewChat}
-      className="btn-outline btn-block btn mb-2 justify-start normal-case"
+      className="btn-outline btn-block btn justify-start normal-case"
     >
       <PlusIcon className="h-4 w-4" />
       New chat

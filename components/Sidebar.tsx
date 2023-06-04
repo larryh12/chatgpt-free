@@ -2,17 +2,25 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import React from 'react';
+import React, { useEffect } from 'react';
 import NewChat from './NewChat';
 import { collection, orderBy, query } from 'firebase/firestore';
 import { db } from '@/firebase';
 import ChatRow from './ChatRow';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { modelData, themeData } from '@/utils/optionData';
+import { themeChange } from 'theme-change';
 
 function Sidebar() {
+  useEffect(() => {
+    themeChange(false);
+  }, []);
+
   const { data: session } = useSession();
   const pathname = usePathname();
+  const themes = themeData;
+  const models = modelData;
   const [chats, loading, error] = useCollection(
     session &&
       query(
@@ -22,11 +30,47 @@ function Sidebar() {
   );
 
   return (
-    <div className="hidden h-screen w-72 flex-col bg-base-300 p-4 md:flex">
+    <div className="hidden h-screen w-72 flex-col space-y-3 bg-base-300 p-4 md:flex">
       <NewChat />
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">ChatGPT model</span>
+        </label>
+        <select className="select-bordered select w-full bg-base-300">
+          {models.map((model) => (
+            <option key={model} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Themes</span>
+        </label>
+        <select
+          data-choose-theme
+          className="select-bordered select w-full bg-base-300"
+        >
+          <option value="">System default</option>
+          {themes.map((theme) => (
+            <option key={theme} value={theme}>
+              {theme}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {loading && (
+        <div className="mx-auto flex items-center gap-4 py-8 text-sm">
+          <span>Loading chats</span>
+          <span className="loading loading-bars loading-sm"></span>
+        </div>
+      )}
+
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div>{/* model select */}</div>
-        {/* map through the chat row */}
         {chats?.docs.map((chat) => (
           <ChatRow
             isActive={pathname?.includes(chat.id)!}

@@ -91,13 +91,11 @@ function ChatInput({ chatId }: Props) {
 
   return (
     <div className="space-y-2">
-      <label
-        className={`${
-          isLoading ? 'inline-flex' : 'hidden'
-        } gap-2 overflow-hidden rounded-full bg-base-200 p-2`}
-      >
-        <span className="label-text-alt">ChatGPT is typing</span>
-        <span className="loading loading-dots loading-xs"></span>
+      <label className={`${isLoading ? 'chat-bubble' : 'hidden'} bg-base-200`}>
+        <p className="label-text-alt mt-1.5 flex gap-2">
+          <span>ChatGPT is typing</span>
+          <span className="loading loading-dots loading-xs" />
+        </p>
       </label>
       <form onSubmit={sendMessage} className="flex w-full items-center gap-4">
         <input
