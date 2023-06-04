@@ -20,7 +20,7 @@ function Login() {
         <span className="text-accent">Free</span>
       </p>
       <button
-        onClick={() => signIn('google')}
+        onClick={() => signIn('google', { callbackUrl: '/' })}
         className="btn-neutral btn normal-case"
       >
         Get Started

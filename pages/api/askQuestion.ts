@@ -1,12 +1,49 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import openai from '@/utils/chatgpt';
 
 type Data = {
-  name: string;
+  answer: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' });
+  const { prompt, chatId, model, session } = req.body;
+
+  if (!prompt) {
+    res.status(400).json({ answer: 'Please provide a prompt!' });
+    return;
+  }
+
+  if (!chatId) {
+    res.status(400).json({ answer: 'Please provide a valid chat ID!' });
+    return;
+  }
+
+  if (!session) {
+    res.status(400).json({ answer: 'Please login to continue!' });
+    return;
+  }
+
+  // ChatGPT Query
+  // const response = await query(prompt, chatId, model);
+
+  const response = await openai
+    .createChatCompletion({
+      model,
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 1,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+      max_tokens: 1000,
+    })
+    .then((res) => res.data.choices[0].message?.content)
+    .catch(
+      (err) =>
+        `ChatGPT was unable to find an answer for that! (Error: ${err.message})`
+    );
+
+  return res.status(200).json({ answer: response! });
 }

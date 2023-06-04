@@ -2,15 +2,9 @@
 
 import { db } from '@/firebase';
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
-import {
-  addDoc,
-  collection,
-  limitToLast,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 type Props = {
   chatId: string;
@@ -18,8 +12,9 @@ type Props = {
 
 function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { data: session } = useSession();
-  const model = 'text-davinci-003';
+  const model = 'gpt-3.5-turbo';
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +23,7 @@ function ChatInput({ chatId }: Props) {
     const input = prompt.trim();
     setPrompt('');
 
-    const message: Message = {
+    const userMessage: Message = {
       text: input,
       createdAt: serverTimestamp(),
       user: {
@@ -49,15 +44,15 @@ function ChatInput({ chatId }: Props) {
         chatId,
         'messages'
       ),
-      message
+      userMessage
     );
 
-    // Toast loading
-    const notification = toast.loading('ChatGPT is thinking...');
+    setIsLoading(true);
 
-    await fetch('@/pages/api/askQuestion', {
+    const res = await fetch('/api/askQuestion', {
       method: 'POST',
       headers: {
+        Accept: 'application/json, text/plain',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -66,16 +61,45 @@ function ChatInput({ chatId }: Props) {
         model,
         session,
       }),
-    }).then(() => {
-      // Toast success
-      toast.success('ChatGPT has responded!', {
-        id: notification,
-      });
     });
+
+    const data = await res.json();
+
+    const gptMessage: Message = {
+      text: data.answer || 'ChatGPT was unable to find an answer for that!',
+      createdAt: serverTimestamp(),
+      user: {
+        _id: 'ChatGPT',
+        name: 'ChatGPT',
+        avatar: 'https://simpleicons.org/icons/openai.svg',
+      },
+    };
+
+    await addDoc(
+      collection(
+        db,
+        'users',
+        session?.user?.email!,
+        'chats',
+        chatId,
+        'messages'
+      ),
+      gptMessage
+    );
+
+    setIsLoading(false);
   };
 
   return (
-    <div>
+    <div className="space-y-2">
+      <label
+        className={`${
+          isLoading ? 'inline-flex' : 'hidden'
+        } gap-2 overflow-hidden rounded-full bg-base-200 p-2`}
+      >
+        <span className="label-text-alt">ChatGPT is thinking</span>
+        <span className="loading loading-dots loading-xs"></span>
+      </label>
       <form onSubmit={sendMessage} className="flex w-full items-center gap-4">
         <input
           value={prompt}
@@ -83,7 +107,7 @@ function ChatInput({ chatId }: Props) {
           type="text"
           placeholder="Send a message"
           className="input-bordered input flex-1 focus:outline-none"
-          disabled={!session}
+          disabled={!session || isLoading}
         />
         <button
           type="submit"

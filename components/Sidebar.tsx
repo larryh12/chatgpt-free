@@ -45,7 +45,10 @@ function Sidebar() {
               className="m-auto h-8 w-8 rounded-full transition-all hover:opacity-50"
             />
           </a>
-          <p onClick={() => signOut()} className="link m-auto text-sm">
+          <p
+            onClick={() => signOut({ callbackUrl: '/' })}
+            className="link m-auto text-sm"
+          >
             Sign out
           </p>
         </div>

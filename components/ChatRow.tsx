@@ -21,7 +21,7 @@ function ChatRow({ id, isActive }: Props) {
     session &&
       query(
         collection(db, 'users', session.user?.email!, 'chats', id, 'messages'),
-        orderBy('createdAt', 'desc')
+        orderBy('createdAt', 'asc')
       )
   );
   const removeChat = async () => {
