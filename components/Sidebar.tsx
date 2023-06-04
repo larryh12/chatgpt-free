@@ -7,7 +7,7 @@ import NewChat from './NewChat';
 import { collection, orderBy, query } from 'firebase/firestore';
 import { db } from '@/firebase';
 import ChatRow from './ChatRow';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { modelData, themeData } from '@/utils/optionData';
 import { themeChange } from 'theme-change';
@@ -20,6 +20,7 @@ function Sidebar() {
 
   const { data: session } = useSession();
   const pathname = usePathname();
+  const router = useRouter();
   const themes = themeData;
   const models = modelData;
   const [chats, loading, error] = useCollection(
@@ -88,19 +89,20 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div className="flex flex-col items-center">
-          <a href="/" aria-label="Home">
-            <div className="online avatar">
-              <div className="w-10 rounded-full ring ring-offset-2 ring-offset-base-100 transition-all hover:ring-accent">
-                <Image
-                  alt="avatar"
-                  src={session.user?.image!}
-                  width={40}
-                  height={40}
-                />
-              </div>
+        <div className="flex flex-col items-center gap-1">
+          <div
+            className="online avatar cursor-pointer"
+            onClick={() => router.push('/')}
+          >
+            <div className="w-10 rounded-full ring ring-offset-2 ring-offset-base-100 transition-all hover:ring-accent">
+              <Image
+                alt="avatar"
+                src={session.user?.image!}
+                width={40}
+                height={40}
+              />
             </div>
-          </a>
+          </div>
           <p
             onClick={() => signOut({ callbackUrl: '/' })}
             className="link-hover link text-sm transition-all"
