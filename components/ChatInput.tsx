@@ -5,6 +5,7 @@ import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
+import useSWR from 'swr';
 
 type Props = {
   chatId: string;
@@ -14,7 +15,9 @@ function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { data: session } = useSession();
-  const model = 'gpt-3.5-turbo';
+  const { data: model } = useSWR('model', {
+    fallbackData: 'gpt-3.5-turbo',
+  });
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

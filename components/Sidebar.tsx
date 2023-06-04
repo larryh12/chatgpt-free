@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { modelData, themeData } from '@/utils/optionData';
 import { themeChange } from 'theme-change';
+import useSWR from 'swr';
 
 function Sidebar() {
   useEffect(() => {
@@ -28,6 +29,9 @@ function Sidebar() {
         orderBy('createdAt', 'desc')
       )
   );
+  const { data: model, mutate: setModel } = useSWR('model', {
+    fallbackData: 'gpt-3.5-turbo',
+  });
 
   return (
     <div className="hidden h-screen w-72 flex-col space-y-3 bg-base-300 p-4 md:flex">
@@ -54,7 +58,10 @@ function Sidebar() {
         <label className="label">
           <span className="label-text">ChatGPT model</span>
         </label>
-        <select className="select-bordered select w-full bg-base-300">
+        <select
+          onChange={(e) => setModel(e.target.value)}
+          className="select-bordered select w-full bg-base-300"
+        >
           {models.map((model) => (
             <option key={model} value={model}>
               {model}
