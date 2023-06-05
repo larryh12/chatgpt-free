@@ -7,19 +7,19 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex h-screen flex-col gap-16 overflow-y-auto px-8 py-8 md:items-center md:justify-center md:py-16">
+    <div className="flex h-screen flex-col overflow-y-auto p-4 md:items-center md:justify-center">
       <MenuBtn />
-      <h1 className="mx-auto text-center text-4xl font-bold">
+      <h1 className="mx-auto mb-4 text-center text-4xl font-bold md:mb-8">
         ChatGPT <span className="text-accent">Free</span>
       </h1>
 
-      <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-4">
+      <div className="flex flex-col items-center gap-4 md:flex-row md:items-start md:gap-4">
         <div className="mx-auto w-full max-w-md flex-1">
           <div className="mb-4 flex items-center justify-center gap-2 md:flex-col">
             <SunIcon className="h-8 w-8" />
             <h2>Examples</h2>
           </div>
-          <div className="space-y-4 [&>p]:btn [&>p]:flex [&>p]:h-fit [&>p]:p-4 [&>p]:normal-case [&>p]:leading-5">
+          <div className="space-y-4 [&>p]:btn [&>p]:flex [&>p]:h-fit [&>p]:p-2 [&>p]:normal-case [&>p]:leading-5">
             <p>&quot;Explain quantum computing in simple terms&quot;</p>
             <p>
               &quot;Got any creative ideas for a 10 year old&apos;s

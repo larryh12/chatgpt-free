@@ -34,7 +34,7 @@ function ChatRow({ id, isActive }: Props) {
       <div
         className={`btn-ghost ${
           isActive && 'btn-active'
-        } btn-block btn mt-2 normal-case`}
+        } btn-block btn normal-case`}
       >
         <ChatBubbleLeftIcon className="h-5 w-5" />
         <p className="flex-1 truncate text-left">

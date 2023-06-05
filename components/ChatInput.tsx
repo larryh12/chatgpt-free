@@ -93,14 +93,19 @@ function ChatInput({ chatId }: Props) {
   };
 
   return (
-    <div className="space-y-2 py-8">
-      <label className={`${isLoading ? 'chat-bubble' : 'hidden'} bg-base-200`}>
-        <p className="label-text-alt mt-1.5 flex gap-2">
-          <span>ChatGPT is typing</span>
-          <span className="loading loading-dots loading-xs" />
-        </p>
+    <div className="space-y-2 py-2 md:py-4">
+      <label
+        className={`${
+          isLoading ? 'badge' : 'hidden'
+        } label-text-alt gap-2 bg-base-200 p-3`}
+      >
+        <span>ChatGPT is typing</span>
+        <span className="loading loading-dots loading-xs" />
       </label>
-      <form onSubmit={sendMessage} className="flex w-full items-center gap-4">
+      <form
+        onSubmit={sendMessage}
+        className="flex w-full items-center gap-2 md:gap-4"
+      >
         <input
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}

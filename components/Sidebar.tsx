@@ -35,7 +35,7 @@ function Sidebar() {
   });
 
   return (
-    <div className="flex h-screen w-72 max-w-[80vw] flex-col space-y-3 bg-base-300 p-4">
+    <div className="flex h-screen w-72 max-w-[80vw] flex-col space-y-2 bg-base-300 p-4">
       <NewChat />
 
       <div className="form-control">
@@ -72,7 +72,7 @@ function Sidebar() {
       </div>
 
       {loading && (
-        <div className="mx-auto flex items-center gap-4 py-8 text-sm">
+        <div className="mx-auto flex items-center gap-4 py-4 text-sm">
           <span>Loading chats</span>
           <span className="loading loading-bars loading-sm"></span>
         </div>
@@ -89,12 +89,12 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div className="flex flex-col items-center gap-1 pt-3">
+        <div className="flex flex-col items-center gap-1 pt-2">
           <div
             className="online avatar cursor-pointer"
             onClick={() => router.push('/')}
           >
-            <div className="w-10 rounded-full ring ring-offset-2 ring-offset-base-100 transition-all hover:ring-accent">
+            <div className="w-10 rounded-full ring ring-offset-2 ring-offset-base-100 hover:ring-accent md:transition">
               <Image
                 alt="avatar"
                 src={session.user?.image!}
@@ -105,7 +105,7 @@ function Sidebar() {
           </div>
           <p
             onClick={() => signOut({ callbackUrl: '/' })}
-            className="link-hover link text-sm transition-all"
+            className="link-hover link text-sm"
           >
             Sign out
           </p>

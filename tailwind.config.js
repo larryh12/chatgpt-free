@@ -6,8 +6,10 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    height: {
-      screen: '100svh',
+    extend: {
+      height: {
+        screen: '100svh',
+      },
     },
   },
   plugins: [require('daisyui')],

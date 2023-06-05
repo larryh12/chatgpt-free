@@ -30,7 +30,7 @@ function Chat({ chatId }: Props) {
   );
 
   return (
-    <div className="flex-1 space-y-4 overflow-y-auto md:pr-4">
+    <div className="flex-1 space-y-2 overflow-y-auto md:space-y-4">
       {messages?.docs.map((message) => (
         <div
           key={message.id}

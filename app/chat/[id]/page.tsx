@@ -11,7 +11,7 @@ type Props = {
 
 function ChatPage({ params: { id } }: Props) {
   return (
-    <div className="mx-auto flex h-screen w-full max-w-screen-lg flex-col p-8">
+    <div className="mx-auto flex h-screen w-full max-w-screen-lg flex-col p-4">
       <MenuBtn />
       <Chat chatId={id} />
       <ChatInput chatId={id} />
