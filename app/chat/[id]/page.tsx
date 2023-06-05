@@ -1,5 +1,6 @@
 import Chat from '@/components/Chat';
 import ChatInput from '@/components/ChatInput';
+import MenuBtn from '@/components/MenuBtn';
 import React from 'react';
 
 type Props = {
@@ -10,7 +11,8 @@ type Props = {
 
 function ChatPage({ params: { id } }: Props) {
   return (
-    <div className="mx-auto flex h-screen max-w-screen-lg flex-col px-8 py-16">
+    <div className="mx-auto flex h-screen w-full max-w-screen-lg flex-col p-8">
+      <MenuBtn />
       <Chat chatId={id} />
       <ChatInput chatId={id} />
     </div>

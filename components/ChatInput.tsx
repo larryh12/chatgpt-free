@@ -93,7 +93,7 @@ function ChatInput({ chatId }: Props) {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 py-8">
       <label className={`${isLoading ? 'chat-bubble' : 'hidden'} bg-base-200`}>
         <p className="label-text-alt mt-1.5 flex gap-2">
           <span>ChatGPT is typing</span>

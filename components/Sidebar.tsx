@@ -35,7 +35,7 @@ function Sidebar() {
   });
 
   return (
-    <div className="hidden h-screen w-72 flex-col space-y-3 bg-base-300 p-4 md:flex">
+    <div className="flex h-screen w-72 max-w-[80vw] flex-col space-y-3 bg-base-300 p-4">
       <NewChat />
 
       <div className="form-control">
@@ -89,7 +89,7 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-1 pt-3">
           <div
             className="online avatar cursor-pointer"
             onClick={() => router.push('/')}
