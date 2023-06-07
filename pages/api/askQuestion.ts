@@ -31,7 +31,7 @@ export default async function handler(
     .createChatCompletion({
       model,
       messages: [{ role: 'user', content: prompt }],
-      temperature: 0.5,
+      temperature: 0.9,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
