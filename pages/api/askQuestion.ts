@@ -31,11 +31,10 @@ export default async function handler(
     .createChatCompletion({
       model,
       messages: [{ role: 'user', content: prompt }],
-      temperature: 0.9,
+      temperature: 1,
       top_p: 1,
-      frequency_penalty: 0,
       presence_penalty: 0,
-      max_tokens: 1000,
+      frequency_penalty: 0,
     })
     .then((res) => res.data.choices[0].message?.content)
     .catch(
