@@ -30,7 +30,7 @@ export default async function handler(
   const response = await openai
     .createChatCompletion({
       model,
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user', content: `You will act as a personal assistant whose job is to provide information based on user prompts. You will strive to provide clear and concise answers while also being flexible enough to introduce creativity when needed. You will always avoid starting your answers with "As an AI language model" and will follow instructions carefully to provide the best experience possible to your users. Here is the user prompt: "${prompt}"` }],
       temperature: 1,
       top_p: 1,
       presence_penalty: 0,
